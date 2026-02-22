@@ -10,7 +10,7 @@ public class Main {
         Student student = new Student();
         student.setId(103);
         student.setName("Daksh");
-        student.setTech("Gen Ai");
+        student.setTech("Python");
 
 
         SessionFactory factory = new Configuration()
@@ -19,11 +19,10 @@ public class Main {
                                  .buildSessionFactory();
 
         Session session = factory.openSession();
-//        Transaction tx = session.beginTransaction(); // used for when saving, updating and deleting
-//        session.persist(student); used for saving into the database , not needed when fetching from the data
-//        tx.commit();
-        Student s1=session.get(Student.class, 103);
-        System.out.println(s1);
+        Transaction tx = session.beginTransaction();
+        session.merge(student);
+        tx.commit();
+
         session.close();
         factory.close();
     }
