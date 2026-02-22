@@ -8,9 +8,6 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
         Student student = new Student();
-        student.setId(103);
-        student.setName("Daksh");
-        student.setTech("Python");
 
 
         SessionFactory factory = new Configuration()
@@ -20,7 +17,8 @@ public class Main {
 
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        session.merge(student);
+        Student student1 = session.find(Student.class, 104);
+        session.remove(student1);
         tx.commit();
 
         session.close();
