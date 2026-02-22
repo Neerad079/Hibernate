@@ -8,7 +8,9 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
         Student student = new Student();
-
+        student.setId(1);
+        student.setTech("spring");
+        student.setName("Neerad");
 
         SessionFactory factory = new Configuration()
                                  .addAnnotatedClass(com.neerad.Student.class)
@@ -17,8 +19,7 @@ public class Main {
 
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        Student student1 = session.find(Student.class, 104);
-        session.remove(student1);
+        session.persist(student);
         tx.commit();
 
         session.close();
