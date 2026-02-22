@@ -12,7 +12,6 @@ public class Main {
         student.setName("Daksh");
         student.setTech("Gen Ai");
 
-        // saving student object with hibernate
 
         SessionFactory factory = new Configuration()
                                  .addAnnotatedClass(com.neerad.Student.class)
@@ -20,9 +19,11 @@ public class Main {
                                  .buildSessionFactory();
 
         Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.persist(student);
-        tx.commit();
+//        Transaction tx = session.beginTransaction(); // used for when saving, updating and deleting
+//        session.persist(student); used for saving into the database , not needed when fetching from the data
+//        tx.commit();
+        Student s1=session.get(Student.class, 103);
+        System.out.println(s1);
         session.close();
         factory.close();
     }

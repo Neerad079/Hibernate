@@ -8,8 +8,8 @@ import lombok.Getter;
 @Data
 public class Student {
     @Id
-    private String name;
     private int id;
+    private String name;
     private String tech;
 
 }
