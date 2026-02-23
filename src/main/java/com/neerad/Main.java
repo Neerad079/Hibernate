@@ -8,12 +8,26 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
         Student student = new Student();
-        student.setId(4);
+        student.setId(1);
         student.setName("Neerad");
-        Laptop laptop = new Laptop();
-        laptop.setLid(102);
-        laptop.setLname("HP");
-        student.setLaptop(laptop);
+        Laptop laptop1 = new Laptop();
+        laptop1.setLid(101);
+        laptop1.setLname("Acer");
+        laptop1.setStudent(student);
+
+        Laptop laptop2 = new Laptop();
+        laptop2.setLid(102);
+        laptop2.setLname("HP");
+        laptop2.setStudent(student);
+
+        Laptop laptop3 = new Laptop();
+        laptop3.setLid(103);
+        laptop3.setLname("Dell");
+        laptop3.setStudent(student);
+
+        student.getLaptop().add(laptop1);
+        student.getLaptop().add(laptop2);
+        student.getLaptop().add(laptop3);
 
         SessionFactory factory = new Configuration()
                                  .addAnnotatedClass(com.neerad.Student.class)
@@ -24,7 +38,6 @@ public class Main {
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         session.persist(student);
-        session.persist(laptop);
         tx.commit();
 
         session.close();

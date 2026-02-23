@@ -3,6 +3,10 @@ package com.neerad;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class Student {
@@ -10,8 +14,8 @@ public class Student {
     private int id;
     private String name;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    private Laptop laptop;
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "student")
+    private List<Laptop> laptop= new ArrayList<Laptop>();
 
 
 }
