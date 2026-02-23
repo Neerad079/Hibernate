@@ -14,7 +14,7 @@ public class Student {
     private int id;
     private String name;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "student")
+    @ManyToMany(cascade=CascadeType.ALL,mappedBy = "student")
     private List<Laptop> laptop= new ArrayList<Laptop>();
 
 
